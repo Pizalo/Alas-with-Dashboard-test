@@ -16,6 +16,7 @@ from module.notify import handle_notify
 from module.gg_handler.gg_handler import GGHandler
 
 
+
 class AzurLaneAutoScript:
     stop_event: threading.Event = None
 
@@ -242,6 +243,7 @@ class AzurLaneAutoScript:
         CampaignHard(config=self.config, device=self.device).run()
 
     def exercise(self):
+        GGHandler(config=self.config, device=self.device).power_limit('Exercise')
         from module.exercise.exercise import Exercise
         Exercise(config=self.config, device=self.device).run()
 
@@ -255,6 +257,7 @@ class AzurLaneAutoScript:
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def raid_daily(self):
+        GGHandler(config=self.config, device=self.device).power_limit('Exercise')
         from module.raid.daily import RaidDaily
         RaidDaily(config=self.config, device=self.device).run()
 
@@ -283,10 +286,12 @@ class AzurLaneAutoScript:
         MaritimeEscort(config=self.config, device=self.device).run()
 
     def opsi_ash_assist(self):
+        GGHandler(config=self.config, device=self.device).power_limit('Exercise')
         from module.os_ash.meta import AshBeaconAssist
         AshBeaconAssist(config=self.config, device=self.device).run()
 
     def opsi_ash_beacon(self):
+        GGHandler(config=self.config, device=self.device).power_limit('Exercise')
         from module.os_ash.meta import OpsiAshBeacon
         OpsiAshBeacon(config=self.config, device=self.device).run()
 
@@ -364,6 +369,7 @@ class AzurLaneAutoScript:
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def raid(self):
+        GGHandler(config=self.config, device=self.device).power_limit('Exercise')
         from module.raid.run import RaidRun
         RaidRun(config=self.config, device=self.device).run()
 

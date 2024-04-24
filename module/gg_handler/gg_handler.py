@@ -3,6 +3,9 @@ from module.gg_handler.gg_u2 import GGU2
 from module.gg_handler.gg_screenshot import GGScreenshot
 from module.config.utils import deep_get, deep_set
 from module.logger import logger
+from deploy.emulator import VirtualBoxEmulator
+
+import subprocess
 
 
 class GGHandler:
@@ -40,6 +43,45 @@ class GGHandler:
                     .set_on(factor=self.factor)
         else:
             self.gg_reset()
+
+
+    def check_process(self, package_name):
+        """
+        Check if a process with the given package name is running on the Android device.
+
+        Args:
+            package_name: str - The package name to check for.
+
+        Returns:
+            bool: True if the process is found, False otherwise.
+        """
+
+        try:
+            device_serials = '127.0.0.1:16384'  # 获取设备序列号列表
+            # device_serials = VirtualBoxEmulator.  # 获取设备序列号列表
+
+            # 使用ADB shell命令来获取进程列表，并查找特定的包名
+            cmd = ['adb', '-s', device_serials, 'shell', 'ps', '|', 'grep', package_name]
+            result = subprocess.run(cmd, capture_output=True, text=True)
+
+            # 使用ADB shell命令来获取进程列表，并查找特定的包名
+            # result = subprocess.run(['adb', 'shell', 'ps', '|', 'grep', package_name], capture_output=True, text=True)
+            
+            logger.hr(f"result: {result}")
+
+            # 检查输出中是否包含包名
+            if package_name in result.stdout:
+                logger.hr(f"找到Found process: {package_name}")
+                return True
+            else:
+                logger.hr(f"未找到Process not found: {package_name}")
+                return False
+        except subprocess.CalledProcessError as e:
+            logger.hr(f"Failed to check process: {e}")
+            return False
+
+
+
 
     def skip_error(self) -> bool:
         """
@@ -135,7 +177,12 @@ class GGHandler:
         from module.config.utils import deep_get
         limit = deep_get(self.config.data, keys=f'GameManager.PowerLimit.{task}', default=17000)
         logger.attr('Power Limit', limit)
-        if ocr >= limit:
+
+
+        gg_process_name = deep_get(self.config.data, keys='GameManager.GGHandler.GGPackageName')
+        process_found = self.check_process(gg_process_name)
+
+        if ocr >= limit or process_found:
             logger.critical('There''s high chance that GG is on, restart to disable it')
             from module.gg_handler.gg_data import GGData
             GGData(self.config).set_data(target='gg_on', value=False)
