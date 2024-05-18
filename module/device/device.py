@@ -229,7 +229,7 @@ class Device(Screenshot, Control, AppControl):
             logger.warning('Game died, trying to restart')
             # try:
             from module.handler.login import LoginHandler
-            LoginHandler(config=self.config, device=self.device).app_restart()
+            LoginHandler(config=self.config, device=self).app_restart()
             # except Exception as e:
             #     logger.exception('Failed to restart game')
             #     raise GameNotRunningError('Game died and failed to restart') from e
