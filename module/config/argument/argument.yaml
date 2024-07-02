@@ -2,6 +2,59 @@
 # Define arguments.
 # --------------------
 
+# ==================== Dashboard ====================
+Oil:
+  Value: 0
+  Limit: 0
+  Color: ^000000
+  Record: 2020-01-01 00:00:00
+Coin:
+  Value: 0
+  Limit: 0
+  Color: ^FFAA33
+  Record: 2020-01-01 00:00:00
+Gem:
+  Value: 0
+  Color: ^FF3333
+  Record: 2020-01-01 00:00:00
+Pt:
+  Value: 0
+  Color: ^00BFFF
+  Record: 2020-01-01 00:00:00
+YellowCoin:
+  Value: 0
+  Color: ^FF8800
+  Record: 2020-01-01 00:00:00
+PurpleCoin:
+  Value: 0
+  Color: ^7700BB
+  Record: 2020-01-01 00:00:00
+ActionPoint:
+  Value: 0
+  Total: 0
+  Color: ^0000FF
+  Record: 2020-01-01 00:00:00
+Merit:
+  Value: 0
+  Color: ^FFFF00
+  Record: 2020-01-01 00:00:00
+Cube:
+  Value: 0
+  Color: ^33FFFF
+  Record: 2020-01-01 00:00:00
+Core:
+  Value: 0
+  Color: ^AAAAAA
+  Record: 2020-01-01 00:00:00
+Medal:
+  Value: 0
+  Color: ^FFDD00
+  Record: 2020-01-01 00:00:00
+GuildCoin:
+  Value: 0
+  Color: ^AAAAAA
+  Record: 2020-01-01 00:00:00
+
 # ==================== Alas ====================
 
 Scheduler:
@@ -738,3 +791,29 @@ AzurLaneUncensored:
     display: disabled
 GameManager:
   AutoRestart: true
+
+GGHandler:
+  Enabled: false
+  ServerLocation:
+    value: cn
+    option: [ cn, jp, en, tw ]
+  GGMethod:
+    value: u2
+    option: [ screenshot, u2 ]
+  GGPackageName: com.
+  AutoRestartGG: false
+  RestartEverytime: true
+  GGMultiplyingFactor: 200
+  DisabledTask:
+    value: disable_all_dangerous_task
+    option: [
+      disable_all_dangerous_task,
+      disable_meta_and_exercise,
+      disable_exercise,
+      enable_all,
+    ]
+  ALLowLowLevelInGemsFarming: false
+PowerLimit:
+  Exercise: 16500
+  Raid: 16500
+  Ash: 16500
