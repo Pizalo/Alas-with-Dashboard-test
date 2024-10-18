@@ -58,14 +58,11 @@ class CampaignBase(CampaignBase_):
         Fixed number of scrolls until give up, may need to
         increase as more war archives campaigns are added
         """
-        for _ in range(20):
+        for _ in range(10):
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
-
-            while self.device.click_record and self.device.click_record[-1] == 'WAR_ARCHIVES_SCROLL':
-                self.device.click_record.pop()
 
             # Drag may result in accidental exit, recover
             # before starting next search attempt
@@ -83,7 +80,7 @@ class CampaignBase(CampaignBase_):
                 if WAR_ARCHIVES_SCROLL.at_bottom(main=self):
                     WAR_ARCHIVES_SCROLL.set_top(main=self)
                 else:
-                    WAR_ARCHIVES_SCROLL.next_page(main=self, page=0.66)
+                    WAR_ARCHIVES_SCROLL.next_page(main=self)
                 continue
             else:
                 break
