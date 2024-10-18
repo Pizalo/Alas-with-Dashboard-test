@@ -5,6 +5,8 @@ from typing import Any, Dict, List, Tuple, Union
 import cv2
 import numpy as np
 
+import module.config.server as server
+
 from module.base.button import ButtonGrid
 from module.base.utils import color_similar, crop, get_color, limit_in
 from module.combat.level import LevelOcr
@@ -132,8 +134,12 @@ class EmotionScanner(Scanner):
         super().__init__()
         self._results = []
         self.grids = CARD_EMOTION_GRIDS
-        self.ocr_model = EmotionDigit(self.grids.buttons,
+        if server.server != 'jp':
+            self.ocr_model = EmotionDigit(self.grids.buttons,
                                       name='DOCK_EMOTION_OCR', threshold=176)
+        else:
+            self.ocr_model = EmotionDigit(self.grids.buttons,
+                                      name='DOCK_EMOTION_OCR', threshold=221)
 
     def _scan(self, image) -> List:
         return self.ocr_model.ocr(image)
@@ -439,7 +445,7 @@ class DockScanner(ShipScanner):
         # Roughly Adjust
         # After graying the image, calculate the standard deviation and take the part below the threshold
         # Those parts should present multiple discontinuous subsequences, which here called gap_seq
-        scan_image = crop(image, self.scan_zone)
+        scan_image = crop(image, self.scan_zone, copy=False)
 
         def find_bound(image):
             bound = []
@@ -454,7 +460,7 @@ class DockScanner(ShipScanner):
                 bound = [0] + bound
             return bound
 
-        bounds = [find_bound(crop(scan_image, button.area)) for button in self.scan_grids.buttons]
+        bounds = [find_bound(crop(scan_image, button.area, copy=False)) for button in self.scan_grids.buttons]
         card_bottom = (np.mean(bounds, axis=0) + 0.5).astype(np.uint8)
         # Calculate the bound of gap_seq, usually we get 3 endpoints
         # The offset is the difference between the two groups of endpoints

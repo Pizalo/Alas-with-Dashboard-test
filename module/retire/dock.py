@@ -1,3 +1,5 @@
+import module.config.server as server
+
 from module.base.button import ButtonGrid
 from module.base.decorator import cached_property
 from module.base.timer import Timer
@@ -20,8 +22,12 @@ DOCK_FAVOURITE.add_status('off', check_button=COMMON_SHIP_FILTER_DISABLE)
 CARD_GRIDS = ButtonGrid(
     origin=(93, 76), delta=(164 + 2 / 3, 227), button_shape=(138, 204), grid_shape=(7, 2), name='CARD')
 CARD_RARITY_GRIDS = CARD_GRIDS.crop(area=(0, 0, 138, 5), name='RARITY')
-CARD_LEVEL_GRIDS = CARD_GRIDS.crop(area=(77, 5, 138, 27), name='LEVEL')
-CARD_EMOTION_GRIDS = CARD_GRIDS.crop(area=(23, 29, 48, 52), name='EMOTION')
+if server.server != 'jp':
+    CARD_LEVEL_GRIDS = CARD_GRIDS.crop(area=(77, 5, 138, 27), name='LEVEL')
+    CARD_EMOTION_GRIDS = CARD_GRIDS.crop(area=(23, 29, 48, 52), name='EMOTION')
+else:
+    CARD_LEVEL_GRIDS = CARD_GRIDS.crop(area=(74, 5, 136, 27), name='LEVEL')
+    CARD_EMOTION_GRIDS = CARD_GRIDS.crop(area=(31, 29, 61, 52), name='EMOTION')
 
 DOCK_SCROLL = Scroll(DOCK_SCROLL, color=(247, 211, 66), name='DOCK_SCROLL')
 
@@ -52,9 +58,10 @@ class Dock(Equipment):
         self.ui_click(DOCK_FILTER, appear_button=DOCK_CHECK, check_button=DOCK_FILTER_CONFIRM,
                       skip_first_screenshot=True)
 
-    def dock_filter_confirm(self):
+    def dock_filter_confirm(self, wait_loading=True):
         self.ui_click(DOCK_FILTER_CONFIRM, check_button=DOCK_CHECK, skip_first_screenshot=True)
-        self.handle_dock_cards_loading()
+        if wait_loading:
+            self.handle_dock_cards_loading()
 
     @cached_property
     def dock_filter(self) -> Setting:
@@ -102,7 +109,15 @@ class Dock(Equipment):
         )
         return setting
 
-    def dock_filter_set(self, sort='level', index='all', faction='all', rarity='all', extra='no_limit'):
+    def dock_filter_set(
+            self,
+            sort='level',
+            index='all',
+            faction='all',
+            rarity='all',
+            extra='no_limit',
+            wait_loading=True
+    ):
         """
         A faster filter set function.
 
@@ -121,7 +136,7 @@ class Dock(Equipment):
         """
         self.dock_filter_enter()
         self.dock_filter.set(sort=sort, index=index, faction=faction, rarity=rarity, extra=extra)
-        self.dock_filter_confirm()
+        self.dock_filter_confirm(wait_loading=wait_loading)
 
     def dock_select_one(self, button, skip_first_screenshot=True):
         """
