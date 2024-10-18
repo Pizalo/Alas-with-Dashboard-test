@@ -193,6 +193,12 @@ class CampaignRun(CampaignEvent, ShopStatus):
             name = 'sp'
         if folder == 'event_20221124_cn' and name in ['asp', 'a.sp']:
             name = 'sp'
+        if folder == 'event_20240425_cn':
+            if name in ['μsp', 'usp', 'iisp']:
+                name = 'sp'
+            name = name.replace('lsp', 'isp').replace('1sp', 'isp')
+            if name == 'isp':
+                name = 'isp1'
         # Convert to chapter T
         convert = {
             'a1': 't1',
@@ -237,6 +243,8 @@ class CampaignRun(CampaignEvent, ShopStatus):
             'event_20211125_cn',
             'event_20231026_cn',
             'event_20231123_cn',
+            'event_20240725_cn',
+            'event_20240829_cn',
         ]:
             name = convert.get(name, name)
         else:
@@ -266,6 +274,10 @@ class CampaignRun(CampaignEvent, ShopStatus):
         if folder == 'event_20230817_cn':
             if name.startswith('e0'):
                 name = 'a1'
+        # event_20240829_cn, TP -> SP
+        if folder == 'event_20240829_cn':
+            if name == 'tp':
+                name = 'sp'
         # Stage loop
         for alias, stages in self.config.STAGE_LOOP_ALIAS.items():
             alias_folder, alias = alias
@@ -359,7 +371,7 @@ class CampaignRun(CampaignEvent, ShopStatus):
                     logger.info('In auto search menu, skip ensure_campaign_ui.')
                 else:
                     logger.info('In auto search menu, closing.')
-                    self.campaign.ensure_auto_search_exit()
+                    # Because event_20240725 task balancer delete self.campaign.ensure_auto_search_exit()
                     self.campaign.ensure_campaign_ui(name=self.stage, mode=mode)
             else:
                 self.campaign.ensure_campaign_ui(name=self.stage, mode=mode)

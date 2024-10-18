@@ -79,7 +79,7 @@
       "help": ""
     },
     "Coalition": {
-      "name": "Frostfall",
+      "name": "Little Academy",
       "help": ""
     },
     "MaritimeEscort": {
@@ -115,7 +115,7 @@
       "help": ""
     },
     "CoalitionSp": {
-      "name": "Frostfall Daily SP",
+      "name": "Little Academy SP",
       "help": ""
     },
     "Commission": {
@@ -187,11 +187,11 @@
       "help": ""
     },
     "OpsiAshBeacon": {
-      "name": "Ash Beacon",
+      "name": "META Battles",
       "help": ""
     },
     "OpsiAshAssist": {
-      "name": "OpSi Ash Assist",
+      "name": "META Assists",
       "help": ""
     },
     "OpsiExplore": {
@@ -530,7 +530,7 @@
     },
     "Serial": {
       "name": "Serial",
-      "help": "Common emulator Serial can be queried in the list below\nUse \"auto\" to auto-detect emulators, but if multiple emulators are running or use emulators that do not support auto-detect, \"auto\" cannot be used and serial must be filled in manually\nDefault serial for select emulators:\n- BlueStacks 127.0.0.1:5555\n- BlueStacks4 Hyper-V use \"bluestacks4-hyperv\", \"bluestacks4-hyperv-2\" for multi instance, and so on\n- BlueStacks5 Hyper-V use \"bluestacks5-hyperv\", \"bluestacks5-hyperv-1\" for multi instance, and so on\n- NoxPlayer 127.0.0.1:62001\n- NoxPlayer64bit 127.0.0.1:59865\n- MuMuPlayer/MuMuPlayer X 127.0.0.1:7555\n- MuMuPlayer12 127.0.0.1:16384\n- MemuPlayer 127.0.0.1:21503\n- LDPlayer emulator-5554 or 127.0.0.1:5555\n- WSA use \"wsa-0\" to make the game run in the background, which needs to be controlled or closed by third-party software\nIf there are multiple emulator instances running, the default is reserved for one of them and the others will use different serials to avoid conflicts\nOpen console.bat and run `adb devices` to find them or follow the emulator's official tutorial"
+      "help": "Common emulator Serial can be queried in the list below\nUse \"auto\" to auto-detect emulators, but if multiple emulators are running or use emulators that do not support auto-detect, \"auto\" cannot be used and serial must be filled in manually\nDefault serial for select emulators:\n- BlueStacks 127.0.0.1:5555\n- BlueStacks4 Hyper-V use \"bluestacks4-hyperv\", \"bluestacks4-hyperv-2\" for multi instance, and so on\n- BlueStacks5 Hyper-V use \"bluestacks5-hyperv\", \"bluestacks5-hyperv-1\" for multi instance, and so on\n- NoxPlayer 127.0.0.1:62001\n- NoxPlayer64bit 127.0.0.1:59865\n- MuMuPlayer/MuMuPlayer X 127.0.0.1:7555\n- MuMuPlayer12 127.0.0.1:16384\n- MemuPlayer 127.0.0.1:21503\n- LDPlayer emulator-5554 or 127.0.0.1:5555\nIf there are multiple emulator instances running, the default is reserved for one of them and the others will use different serials to avoid conflicts\nOpen console.bat and run `adb devices` to find them or follow the emulator's official tutorial"
     },
     "PackageName": {
       "name": "Game Server",
@@ -585,6 +585,8 @@
       "cn_android-21": "[国服] 莱茵河卫兵",
       "cn_android-22": "[国服] 北极光计划",
       "cn_android-23": "[国服] 长戟计划",
+      "cn_android-24": "[国服] 暴雨行动",
+      "cn_android-25": "[国服] 水仙行动",
       "cn_ios-0": "[国服] 夏威夷",
       "cn_ios-1": "[国服] 珊瑚海",
       "cn_ios-2": "[国服] 中途岛",
@@ -638,7 +640,8 @@
       "DroidCast": "DroidCast",
       "DroidCast_raw": "DroidCast_raw",
       "scrcpy": "scrcpy",
-      "nemu_ipc": "nemu_ipc"
+      "nemu_ipc": "nemu_ipc",
+      "ldopengl": "ldopengl"
     },
     "ControlMethod": {
       "name": "Control Method",
@@ -723,7 +726,7 @@
     },
     "CombatScreenshotInterval": {
       "name": "Take Screenshots Every X Second(s) In Combat",
-      "help": "Minimum interval between 2 screenshots, limited in 0.1 ~ 1.0, can help reduce CPU during battle"
+      "help": "Minimum interval between 2 screenshots, limited in 0.3 ~ 1.0, can help reduce CPU during battle"
     },
     "TaskHoardingDuration": {
       "name": "Hoard Tasks For X Minute(s)",
@@ -888,6 +891,7 @@
       "help": "Automatically selects to the latest event",
       "campaign_main": "campaign_main",
       "coalition_20230323": "Frostfall",
+      "coalition_20240627": "Welcome to Little Academy",
       "event_20200227_cn": "Northern Overture",
       "event_20200312_cn": "The Solomon Ranger Rerun",
       "event_20200326_cn": "Microlayer Medley",
@@ -935,9 +939,9 @@
       "event_20220324_cn": "Virtual Tower Rerun",
       "event_20220407_tw": "蒼紅的迴響(復刻)",
       "event_20220414_cn": "Aurora Noctis Rerun",
-      "event_20220428_cn": "Rondo at Rainbows End",
-      "event_20220526_cn": "Pledge of the Radiant Court",
-      "event_20220728_cn": "Aquilifers Ballade",
+      "event_20220428_cn": "Rondo at Rainbows End Rerun",
+      "event_20220526_cn": "Pledge of the Radiant Court Rerun",
+      "event_20220728_cn": "Aquilifers Ballade Rerun",
       "event_20220818_cn": "Operation Convergence",
       "event_20220915_cn": "Violet Tempest Blooming Lycoris",
       "event_20221124_cn": "The Alchemist and the Archipelago of Secrets",
@@ -951,6 +955,12 @@
       "event_20231123_cn": "The Ninja Scrolls: Azur Flash",
       "event_20231221_cn": "Light-Chasing Sea of Stars",
       "event_20240229_cn": "Snowrealm Peregrination",
+      "event_20240425_cn": "Heart-Linking Harmony",
+      "event_20240521_cn": "Light of the Martyrium",
+      "event_20240725_cn": "Interlude of Illusions",
+      "event_20240815_cn": "Windborne Steel Wings",
+      "event_20240829_cn": "Whence Flowers Bear No Fruit",
+      "event_20240912_cn": "Ode of Everblooming Crimson",
       "raid_20200624": "Air Raid Drills with Essex Rerun",
       "raid_20210708": "Cross Wave rerun",
       "raid_20220127": "Mystery Investigation",
@@ -979,15 +989,20 @@
       "war_archives_20200820_cn": "archives Scherzo of Iron and Blood",
       "war_archives_20200903_cn": "archives Stars of the Shimmering Fjord",
       "war_archives_20200917_cn": "archives Dreamwakers Butterfly",
+      "war_archives_20201012_cn": "archives Sundered Blue",
       "war_archives_20201029_cn": "archives Universe in Unison",
       "war_archives_20201229_cn": "archives Inverted Orthant",
       "war_archives_20210225_cn": "archives Khorovod of Dawns Rime",
       "war_archives_20210325_cn": "archives Ashen Simulacrum",
+      "war_archives_20210422_cn": "archives Daedalian Hymn",
       "war_archives_20210527_cn": "archives Mirror Involution",
       "war_archives_20210624_cn": "archives Swirling Cherry Blossoms",
       "war_archives_20210819_cn": "archives Microlayer Medley",
+      "war_archives_20210916_cn": "archives Upon the Shimmering Blue",
       "war_archives_20211014_cn": "archives Crescendo of Polaris",
       "war_archives_20211028_cn": "archives Skybound Oratorio",
+      "war_archives_20211111_cn": "archives The Flame-Touched Dagger",
+      "war_archives_20211229_cn": "archives Tower of Transcendence",
       "war_archives_20220210_cn": "archives Northern Overture",
       "war_archives_20220414_cn": "archives Aurora Noctis"
     },
@@ -1023,13 +1038,13 @@
       "name": "Stop Condition Settings",
       "help": "After triggering any of following conditions, the current task will be stopped"
     },
+    "OilLimit": {
+      "name": "Keep Oil Above X",
+      "help": "Delay current task if oil is found to be below this number"
+    },
     "RunCount": {
       "name": "Run Level X Time(s)",
       "help": "Automatically decreases by 1 for every completion and stops the current task upon reaching zero; saving as 0 implies unlimited runs until a different stop condition is met"
-    },
-    "OilLimit": {
-      "name": "Keep Oil Above X",
-      "help": "Stop current task if oil is found to be below this number"
     },
     "MapAchievement": {
       "name": "Level Achievement",
@@ -1042,7 +1057,7 @@
     },
     "StageIncrease": {
       "name": "Enable Continuous Clear",
-      "help": "Suited for 100% Clear, requires sufficient fleet strength and satisfying level attribute restrictions for every level involved\n1-1 to 14-4, A1 to A3, B1 to B3, C1 to C3, D1 to D3, T1 to T6, SP1 to SP4"
+      "help": "Suited for 100% Clear, requires sufficient fleet strength and satisfying level attribute restrictions for every level involved\n1-1 to 15-4, A1 to A3, B1 to B3, C1 to C3, D1 to D3, T1 to T6, SP1 to SP4"
     },
     "GetNewShip": {
       "name": "New Ship Get",
@@ -1357,7 +1372,7 @@
     },
     "ChangeFlagship": {
       "name": "Change Flagship",
-      "help": "Change flagship if flagship level >= 33 or either flagship or vanguard are emotion exhausted (if Change Vanguard is enabled).If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new common CV/CVL whose level is in range of 1 to 32, after current has reached level 32+. Meanwhile, abandoned flagships will be retired. Any common CV/CVL whose level is 2+ will be regarded as targets. Do confirm that your own ships which is not a target has been locked\n\nThe flagship's equipment is replaced when being switched out by first recording the current setup\nOnly populated equipment slots will be replaced. If the CV/CVL preference has been configured, all 5 slots will be populated otherwise only the auxiliary slots will be populated.",
+      "help": "Change flagship if flagship level >= 32 or either flagship or vanguard are emotion exhausted (if Change Vanguard is enabled). If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new common CV/CVL whose level is in range of 1 to 31, after current has reached level 32+. Meanwhile, abandoned flagships will be retired. Any common CV/CVL whose level is 2+ will be regarded as targets. Do confirm that your own ships which is not a target has been locked\n\nThe flagship's equipment is replaced when being switched out by first recording the current setup\nOnly populated equipment slots will be replaced. If the CV/CVL preference has been configured, all 5 slots will be populated otherwise only the auxiliary slots will be populated.",
       "ship": "Change Ship",
       "ship_equip": "Change Ship + Gears"
     },
@@ -1372,7 +1387,7 @@
     },
     "ChangeVanguard": {
       "name": "Change Vanguard",
-      "help": "Change vanguard if flagship or vanguard are emotion exhausted.If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new level 100(70) common vanguard after current flagship has reached level 32+ (Only CN players'0 limit break ship can reach level 100)\n\nThe vanguard's equipment is replaced when being switched out by first recording the current setup. Only populated equipment slots will be replaced.",
+      "help": "Change vanguard if flagship or vanguard are emotion exhausted. If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new level 100(70) common vanguard from eagle or ironblood after current flagship has reached level 32+ (Only CN players'0 limit break ship can reach level 100)\n\nThe vanguard's equipment is replaced when being switched out by first recording the current setup. Only populated equipment slots will be replaced.",
       "disabled": "Don't Change",
       "ship": "Change Ship",
       "ship_equip": "Change Ship + Gears"
@@ -1381,8 +1396,10 @@
       "name": "Flagship Common DD Preference",
       "help": "",
       "any": "any",
-      "aulick_or_foote": "aulick or foote",
-      "cassin_or_downes": "cassin or downes"
+      "favourite": "Favourite Ships Only",
+      "aulick_or_foote": "Aulick or Foote",
+      "cassin_or_downes": "Cassin or Downes",
+      "z20_or_z21": "Z20 or Z21"
     },
     "CommissionLimit": {
       "name": "Prevent Too Many Urgent Commissions",
@@ -1480,6 +1497,14 @@
     "_info": {
       "name": "Event Settings",
       "help": "Fleets must be prepared manually in game before running"
+    },
+    "Mode": {
+      "name": "Mode",
+      "help": "SP needs to use event daily SP to run",
+      "easy": "Easy",
+      "normal": "Normal",
+      "hard": "Hard",
+      "ex": "EX"
     },
     "Fleet": {
       "name": "Fleet",
@@ -1608,6 +1633,9 @@
       "name": "Preset Filter Select",
       "help": "See research drops rates and spawn rates in https://azur-stats.lyoko.io/. People without a basic knowledge of these are recommended to use pre-optimized presets instead of writing custom filters",
       "custom": "custom",
+      "series_7_blueprint_la9": "Series 7 Blueprints+La9",
+      "series_7_blueprint_only": "Series 7 Blueprints Only",
+      "series_7_la9_only": "Series 7 La9 Only",
       "series_6_blueprint_203": "Series 6 Blueprints+203",
       "series_6_blueprint_only": "Series 6 Blueprints Only",
       "series_6_203_only": "Series 6 203 Only",
@@ -1708,6 +1736,10 @@
     "EnhanceIndex": {
       "name": "Enhance Index",
       "help": "Index of target meowfficer to enhance. Limited in 1 ~ 12; indices are in ascending order from left to right of the 4 x 3 grid."
+    },
+    "MaxFeedLevel": {
+      "name": "Do not use meowfficer larger than level X as enhancing materials",
+      "help": "The X value is limited to 1 to 30"
     }
   },
   "GuildLogistics": {
@@ -2138,15 +2170,19 @@
       "name": "Mail Settings",
       "help": ""
     },
-    "Collect": {
-      "name": "Collect Mail Rewards",
-      "help": "Only collects the top 3 mail entries"
+    "ClaimMerit": {
+      "name": "Claim Merit Mails",
+      "help": ""
     },
-    "Filter": {
-      "name": "Mail Filter",
-      "help": "Filter as to which mail types should be collected\nSupports Merit, Coolant, Coin, DecorCoin, Cube, Oil, and/or Gem"
+    "ClaimMaintenance": {
+      "name": "Claim Maintenance Mails",
+      "help": "Mail.ClaimMaintenance.help"
     },
-    "Delete": {
+    "ClaimTradeLicense": {
+      "name": "Claim Trade License Mails",
+      "help": ""
+    },
+    "DeleteCollected": {
       "name": "Delete Collected Mail Rewards",
       "help": "Delete the already collected mail entries\nMark any entries \"important\" in-game to avoid accidental deletion"
     }
@@ -2388,7 +2424,7 @@
   },
   "OpsiAshAssist": {
     "_info": {
-      "name": "OpSi Ash Assist Settings",
+      "name": "META Assist Settings",
       "help": "Limited to 3 everyday"
     },
     "Tier": {
@@ -2434,11 +2470,11 @@
   },
   "OpsiAshBeacon": {
     "_info": {
-      "name": "Ash Beacon Settings",
+      "name": "META Battle Settings",
       "help": ""
     },
     "AttackMode": {
-      "name": "META Attack",
+      "name": "META Battle",
       "help": "",
       "current": "Current",
       "current_dossier": "Current + Dossier"
@@ -2448,8 +2484,8 @@
       "help": "Strike each beacon only once, then call for support every half hour thereafter\nNot effective in META dossiers"
     },
     "DossierAutoAttackMode": {
-      "name": "OpsiAshBeacon.DossierAutoAttackMode.name",
-      "help": "OpsiAshBeacon.DossierAutoAttackMode.help"
+      "name": "Use Auto Attack Mode in META Dossier",
+      "help": "Use Auto Attack Mode after the first battle, currently only available on CN"
     },
     "RequestAssist": {
       "name": "Request Assists",
@@ -2509,11 +2545,20 @@
   "OpsiShop": {
     "_info": {
       "name": "OpSi Shop Settings",
-      "help": "Completes OpSi daily activities\nThe following must be satisfied:\n- OpSi story and practice battles must be complete\n- Task OpSi Explore enabled or consuming 5000 oil for special radar in OpSi voucher shop"
+      "help": "Completes OpSi daily activities\nThe following must be satisfied:\n- OpSi story and practice battles must be complete\n- Task OpSi Explore enabled or consuming 5000 oil for special radar in OpSi voucher shop\nAvailable only in the next month after clearing OpSi story, i.e., after the port shop becomes a new version of the shop"
     },
-    "BuySupply": {
-      "name": "Buy From Port Shops",
-      "help": "Buy all items from port shops\nShop inventory consists of a fixed pool that is reset monthly, items not bought during a cycle has the chance of re-appearing and blocking preferable high value items"
+    "PresetFilter": {
+      "name": "OpSi Shop Filter",
+      "help": "Generally does not need to be modified. Use \"High value items and META material\"` if Voucher Coins spilled or \"Without META materials\" if you are newcomer.\nHigh value items include ActionPoint, Logger and T4 or higher items; META materials include METABook and META enhance materials.",
+      "max_benefit": "High value items",
+      "max_benefit_meta": "High value items and META materials",
+      "no_meta": "Not to buy META materials",
+      "all": "All",
+      "custom": "custom"
+    },
+    "CustomFilter": {
+      "name": "Custom Research Priority",
+      "help": "To use your own filter, set \"OpSi Shop Filter Select\" to \"custom\". All options have been defined at  <https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/filter_string_en>"
     }
   },
   "OpsiVoucher": {

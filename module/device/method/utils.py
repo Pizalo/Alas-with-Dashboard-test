@@ -1,3 +1,4 @@
+import os
 import random
 import re
 import socket
@@ -5,6 +6,7 @@ import time
 import typing as t
 
 import uiautomator2 as u2
+import uiautomator2cache
 from adbutils import AdbTimeout
 from lxml import etree
 
@@ -50,6 +52,25 @@ from module.logger import logger
 
 RETRY_TRIES = 5
 RETRY_DELAY = 3
+
+# Patch uiautomator2 appdir
+u2.init.appdir = os.path.dirname(uiautomator2cache.__file__)
+
+# Patch uiautomator2 logger
+u2_logger = u2.logger
+u2_logger.debug = logger.info
+u2_logger.info = logger.info
+u2_logger.warning = logger.warning
+u2_logger.error = logger.error
+u2_logger.critical = logger.critical
+
+
+def setup_logger(*args, **kwargs):
+    return u2_logger
+
+
+u2.setup_logger = setup_logger
+u2.init.setup_logger = setup_logger
 
 
 def is_port_using(port_num):
@@ -185,12 +206,6 @@ def handle_adb_error(e):
         # Raised by uiautomator2 when current adb service is killed by another version of adb service.
         logger.error(e)
         return True
-    elif 'unknown host service' in text:
-        # AdbError(unknown host service)
-        # Another version of ADB service started, current ADB service has been killed.
-        # Usually because user opened a Chinese emulator, which uses ADB from the Stone Age.
-        logger.error(e)
-        return True
     else:
         # AdbError()
         logger.exception(e)
@@ -199,6 +214,25 @@ def handle_adb_error(e):
             'Emulator died, please restart emulator',
             'Serial incorrect, no such device exists or emulator is not running'
         )
+        return False
+
+
+def handle_unknown_host_service(e):
+    """
+    Args:
+        e (Exception):
+
+    Returns:
+        bool: If should retry
+    """
+    text = str(e)
+    if 'unknown host service' in text:
+        # AdbError(unknown host service)
+        # Another version of ADB service started, current ADB service has been killed.
+        # Usually because user opened a Chinese emulator, which uses ADB from the Stone Age.
+        logger.error(e)
+        return True
+    else:
         return False
 
 

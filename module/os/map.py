@@ -4,10 +4,10 @@ from sys import maxsize
 import inflection
 
 from module.base.timer import Timer
-from module.combat.assets import PAUSE
+from module.combat_ui.assets import PAUSE
 from module.config.utils import get_os_reset_remain
 from module.exception import CampaignEnd, GameTooManyClickError, MapWalkError, RequestHumanTakeover, ScriptError
-from module.exercise.assets import QUIT_CONFIRM, QUIT_RECONFIRM
+from module.exercise.assets import QUIT_RECONFIRM
 from module.handler.login import LoginHandler, MAINTENANCE_ANNOUNCE
 from module.logger import logger
 from module.map.map import Map
@@ -19,7 +19,7 @@ from module.os_handler.assets import AUTO_SEARCH_OS_MAP_OPTION_OFF, AUTO_SEARCH_
     AUTO_SEARCH_OS_MAP_OPTION_ON, AUTO_SEARCH_REWARD
 from module.os_handler.strategic import StrategicSearchHandler
 from module.ui.assets import GOTO_MAIN
-from module.ui.page import page_main, page_os
+from module.ui.page import page_os
 
 
 class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
@@ -539,6 +539,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
     def interrupt_auto_search(self, skip_first_screenshot=True):
         logger.info('Interrupting auto search')
         is_loading = False
+        pause_interval = Timer(0.5, count=1)
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -546,20 +547,26 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
                 self.device.screenshot()
 
             # End
-            if self.ui_page_appear(page_main):
+            if self.is_in_main():
                 logger.info('Auto search interrupted')
                 self.config.task_stop()
 
             if self.appear_then_click(AUTO_SEARCH_REWARD, offset=(50, 50), interval=3):
                 continue
-            if self.appear_then_click(PAUSE, interval=0.5):
+            if pause_interval.reached():
+                pause = self.is_combat_executing()
+                if pause:
+                    self.device.click(pause)
+                    self.interval_reset(MAINTENANCE_ANNOUNCE)
+                    pause_interval.reset()
+                    continue
+            if self.handle_combat_quit():
                 self.interval_reset(MAINTENANCE_ANNOUNCE)
-                continue
-            if self.appear_then_click(QUIT_CONFIRM, offset=(20, 20), interval=5):
-                self.interval_reset(MAINTENANCE_ANNOUNCE)
+                pause_interval.reset()
                 continue
             if self.appear_then_click(QUIT_RECONFIRM, offset=True, interval=5):
                 self.interval_reset(MAINTENANCE_ANNOUNCE)
+                pause_interval.reset()
                 continue
 
             if self.appear_then_click(GOTO_MAIN, offset=(20, 20), interval=3):
@@ -855,7 +862,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
                 logger.hr(f'Map rescan {queue[0]}')
                 queue = queue.sort_by_camera_distance(self.camera)
                 self.focus_to(queue[0], swipe_limit=(6, 5))
-                self.focus_to_grid_center(0.25)
+                self.focus_to_grid_center(0.3)
 
                 if self.map_rescan_current(drop=drop):
                     result = True
