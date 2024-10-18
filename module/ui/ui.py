@@ -378,7 +378,7 @@ class UI(InfoHandler):
                 return True
         if self.appear_then_click(LOGIN_RETURN_SIGN, offset=(30, 30), interval=3):
             return True
-        if self.appear(EVENT_LIST_CHECK, offset=(30, 30), interval=3):
+        if self.appear(EVENT_LIST_CHECK, offset=(30, 30), interval=5):
             logger.info(f'UI additional: {EVENT_LIST_CHECK} -> {GOTO_MAIN}')
             if self.appear_then_click(GOTO_MAIN, offset=(30, 30)):
                 return True
@@ -397,11 +397,11 @@ class UI(InfoHandler):
         if self.handle_popup_single_white():
             return True
         # Routed from confirm click
-        if self.appear(SHIPYARD_CHECK, offset=(30, 30), interval=3):
+        if self.appear(SHIPYARD_CHECK, offset=(30, 30), interval=5):
             logger.info(f'UI additional: {SHIPYARD_CHECK} -> {GOTO_MAIN}')
             if self.appear_then_click(GOTO_MAIN, offset=(30, 30)):
                 return True
-        if self.appear(META_CHECK, offset=(30, 30), interval=3):
+        if self.appear(META_CHECK, offset=(30, 30), interval=5):
             logger.info(f'UI additional: {META_CHECK} -> {GOTO_MAIN}')
             if self.appear_then_click(GOTO_MAIN, offset=(30, 30)):
                 return True
@@ -568,6 +568,8 @@ class UI(InfoHandler):
         for switch_button in page_main.links.values():
             if button == switch_button:
                 self.interval_reset(GET_SHIP)
+        if button in [MAIN_GOTO_REWARD, MAIN_GOTO_REWARD_WHITE]:
+            self.interval_reset(GET_SHIP)
         if button in [MAIN_GOTO_CAMPAIGN, MAIN_GOTO_CAMPAIGN_WHITE]:
             self.interval_reset(GET_SHIP)
             # Shinano event has the same title as raid
